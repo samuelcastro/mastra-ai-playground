@@ -3,6 +3,7 @@ import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { LibSQLStore } from '@mastra/libsql';
 import { weatherTool } from '../tools/weather-tool';
+import { cerebras } from '@ai-sdk/cerebras';
 
 export const weatherAgent = new Agent({
   name: 'Weather Agent',
@@ -20,7 +21,7 @@ export const weatherAgent = new Agent({
 
       Use the weatherTool to fetch current weather data.
 `,
-  model: openai('gpt-4o-mini'),
+  model: cerebras('gpt-oss-120b'),
   tools: { weatherTool },
   memory: new Memory({
     storage: new LibSQLStore({
